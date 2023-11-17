@@ -1,4 +1,4 @@
-package com.app.Trendykids;
+package com.app.ModernKids;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

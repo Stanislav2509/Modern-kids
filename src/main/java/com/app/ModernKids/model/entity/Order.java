@@ -1,0 +1,26 @@
+package com.app.ModernKids.model.entity;
+
+import com.app.ModernKids.model.enums.StatusName;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.sql.Timestamp;
+import java.util.Set;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "orders")
+public class Order extends BaseEntity{
+    private Double price;
+    private Timestamp date;
+    @Enumerated(EnumType.STRING)
+    private StatusName status;
+
+    @OneToMany(mappedBy = "order")
+    private Set<Purchase> purchases;
+    @ManyToOne
+    private User user;
+
+}

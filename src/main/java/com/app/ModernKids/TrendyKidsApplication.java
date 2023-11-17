@@ -1,4 +1,4 @@
-package com.app.Trendykids;
+package com.app.ModernKids;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
