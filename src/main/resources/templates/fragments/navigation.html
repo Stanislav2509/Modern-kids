@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="navigation">
+    <nav>
+        <ul>
+            <li> <a th:href="@{/}">Login</a></li>
+        </ul>
+        <ul>
+            <li> <a th:href="@{/}">Register</a></li>
+        </ul>
+        <ul>
+            <li> <a th:href="@{/}">Logout</a></li>
+        </ul>
+        <ul>
+            <li> <a th:href="@{/add-type-product}">Add type product</a></li>
+        </ul>
+        <ul>
+            <li> <a th:href="@{/add-age}">Add age</a></li>
+        </ul>
+        <ul>
+            <li> <a th:href="@{/add-product}">Add product</a></li>
+        </ul>
+        <ul>
+            <li>
+                <a th:href="@{/view-products}">Baby Girl</a>
+                <div>
+                    <a th:href="@{/baby-girl-kits}">Kits</a>
+                </div>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a th:href="@{/view-products}">Baby Boy</a>
+                <div>
+                    <a th:href="@{/baby-boy-kits}">Kits</a>
+                </div>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a th:href="@{/view-products}">Girl</a>
+                <div>
+                    <a th:href="@{/girl-jackets}">Jackets</a>
+                </div>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a th:href="@{/view-products}">Boy</a>
+                <div>
+                    <a th:href="@{/boy-jackets}">Jackets</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+</header>
+
+</body>
+</html>

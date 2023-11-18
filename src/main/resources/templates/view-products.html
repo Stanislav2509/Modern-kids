@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<main>
+    <section th:each="product: ${products}">
+    <img th:src="'/images/' + ${product.getImageURL()}">
+        <div>
+            <h2 th:text="${product.getName()}"></h2>
+        </div>
+        <div>
+            <h4 th:text="${product.getPrice()}"></h4>
+        </div>
+        <div>
+            <h4 th:text="${product.getBrand()}"></h4>
+        </div>
+        <div>
+            <h4 th:text="${product.getCount()}"></h4>
+        </div>
+        <div>
+            <h4 th:text="${product.getOrigin()}"></h4>
+        </div>
+        <div>
+            <h4 th:text="${product.getCategory()}"></h4>
+        </div>
+        <div>
+            <h4 th:text="${product.getType()}"></h4>
+        </div>
+        <div th:each="age: ${product.getAges()}">
+            <h4 th:text="${age}"></h4>
+        </div>
+
+    </section>
+</main>
+</body>
+</html>

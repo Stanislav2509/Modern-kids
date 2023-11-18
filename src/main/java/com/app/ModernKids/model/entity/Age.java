@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "ages")
-public class ProductAge extends BaseEntity{
+public class Age extends BaseEntity{
     @NotBlank
     private String age;
 }

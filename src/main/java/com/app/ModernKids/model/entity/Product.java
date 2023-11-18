@@ -31,7 +31,7 @@ public class Product extends BaseEntity{
             joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "age_id", referencedColumnName = "id")}
     )
-    private Set<ProductAge> ages;
+    private Set<Age> ages;
     @ManyToOne
     private Category category;
     @ManyToOne

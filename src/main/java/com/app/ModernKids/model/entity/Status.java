@@ -1,6 +1,5 @@
 package com.app.ModernKids.model.entity;
 
-import com.app.ModernKids.model.enums.CategoryName;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -13,10 +12,10 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "categories")
-public class Category extends BaseEntity{
+@Table(name = "statuses")
+public class Status extends BaseEntity {
     @NotBlank
     private String name;
-    @OneToMany(mappedBy = "category")
-    private Set<Product> products;
+    @OneToMany(mappedBy = "status")
+    private Set<Order> orders;
 }

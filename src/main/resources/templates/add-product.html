@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+</head>
+<body>
+<main>
+    <h1>Add Product</h1>
+    <form th:action="@{/add-product}" th:method="POST" th:object="${addProductBindingModel}" enctype="multipart/form-data">
+        <div>
+            <div>
+                <label for="productName">Name:</label>
+            </div>
+            <div>
+                <input id="productName" type="text" name="name" th:field="*{name}">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="productPrice">Price:</label>
+            </div>
+            <div>
+                <input id="productPrice" type="text" name="price" th:field="*{price}">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="productPicture">Picture:</label>
+            </div>
+            <div>
+                <input id="productPicture" type="file" name="picture" th:field="*{picture}">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="productBrand">Brand:</label>
+            </div>
+            <div>
+                <input id="productBrand" type="text" name="brand" th:field="*{brand}">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="productCount">Count:</label>
+            </div>
+            <div>
+                <input id="productCount" type="number" name="count" th:field="*{count}">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="productOrigin">Origin:</label>
+            </div>
+            <div>
+                <input id="productOrigin" type="text" name="origin" th:field="*{origin}">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="productAges">Ages:</label>
+            </div>
+            <div>
+                <input th:each="age: ${ages}" id="productAges"
+                       type="checkbox" name="ages" th:field="*{ages}"
+                        th:text="${age.getAge()}"
+                       th:value="${age.getAge()}">
+
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="productCategory">Category: </label>
+            </div>
+            <div>
+                <select name="category" id="productCategory">
+                    <option value="" selected disabled>Select Category</option>
+                    <option th:each="category: ${categories}"
+                            th:text="${category.getName()}">
+
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <div><label for="productType">Type: </label></div>
+            <div>
+                <select name="type" id="productType">
+                    <option value="" selected disabled>Select Type</option>
+                    <option th:each="type: ${types}" th:text="${type.getName()}"></option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Add">
+        </div>
+    </form>
+</main>
+</body>
+</html>

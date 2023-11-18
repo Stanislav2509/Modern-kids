@@ -15,8 +15,8 @@ import java.util.Set;
 public class Order extends BaseEntity{
     private Double price;
     private Timestamp date;
-    @Enumerated(EnumType.STRING)
-    private StatusName status;
+    @ManyToOne
+    private Status status;
 
     @OneToMany(mappedBy = "order")
     private Set<Purchase> purchases;

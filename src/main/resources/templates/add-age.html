@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Age</title>
+</head>
+<body>
+<main>
+    <h1>Add Age</h1>
+    <form th:action="@{/add-age}" th:method = "POST" th:object="${addAgeBindingModel}">
+        <div>
+            <div>
+                <label for="age">Age</label>
+            </div>
+            <div>
+                <input id="age" type="text" name="age" th:field="*{age}">
+            </div>
+            <div><input type="submit" value="Add"></div>
+        </div>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Ages</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${ages.isEmpty()}">
+            <td>No ages found</td>
+        </tr>
+        <tr th:unless="${ages.isEmpty()}" th:each="age: ${ages}">
+            <td th:text="${age.getAge()}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</main>
+
+</body>
+</html>
