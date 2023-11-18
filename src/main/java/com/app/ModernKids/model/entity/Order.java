@@ -1,6 +1,5 @@
 package com.app.ModernKids.model.entity;
 
-import com.app.ModernKids.model.enums.StatusName;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +20,6 @@ public class Order extends BaseEntity{
     @OneToMany(mappedBy = "order")
     private Set<Purchase> purchases;
     @ManyToOne
-    private User user;
+    private UserEntity user;
 
 }

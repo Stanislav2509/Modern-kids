@@ -1,65 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<header th:fragment="navigation">
+<!--    <h5 class="text-center text-white mt-5">Welcome to MobiLeLeLe,
+        <th:block sec:authorize="isAuthenticated()">
+            <th:block sec:authentication="name"></th:block>
+        </th:block>
+        <th:block sec:authorize="!isAuthenticated()">
+            Anonymous!
+        </th:block>
+
+    </h5>-->
+<header  th:fragment="navigation">
     <nav>
+        <p>Welcome
+            <th:block sec:authorize="isAuthenticated()">
+                <th:block sec:authentication="name"></th:block>
+            </th:block>
+        </p>
         <ul>
-            <li> <a th:href="@{/}">Login</a></li>
+            <li sec:authorize="!isAuthenticated()"> <a th:href="@{/login}">Login</a></li>
+            <li sec:authorize="!isAuthenticated()"> <a th:href="@{/register}">Register</a></li>
+            <li sec:authorize="isAuthenticated()">
+                <form th:method="post"
+                      th:action="@{/logout}">
+                    <input type="submit"  value="Logout"/>
+                </form>
+            </li>
+            <li sec:authorize="isAuthenticated()"> <a th:href="@{/add-type-product}">Add type product</a></li>
+            <li sec:authorize="isAuthenticated()"> <a th:href="@{/add-age}">Add age</a></li>
+            <li sec:authorize="isAuthenticated()"> <a th:href="@{/add-product}">Add product</a></li>
         </ul>
-        <ul>
-            <li> <a th:href="@{/}">Register</a></li>
-        </ul>
-        <ul>
-            <li> <a th:href="@{/}">Logout</a></li>
-        </ul>
-        <ul>
-            <li> <a th:href="@{/add-type-product}">Add type product</a></li>
-        </ul>
-        <ul>
-            <li> <a th:href="@{/add-age}">Add age</a></li>
-        </ul>
-        <ul>
-            <li> <a th:href="@{/add-product}">Add product</a></li>
-        </ul>
-        <ul>
+        <ul th:each="category: ${categories}">
             <li>
-                <a th:href="@{/view-products}">Baby Girl</a>
-                <div>
-                    <a th:href="@{/baby-girl-kits}">Kits</a>
+                <a th:href="@{/view-products/{categoryId}(categoryId=${category.id})}" th:text="${category.name}"></a>
+                <div th:each="type: ${types}">
+                    <a th:href="@{/view-products/{categoryId}/{typeId}(categoryId=${category.id}, typeId=${type.id})}"
+                       th:text="${type.name}"></a>
                 </div>
             </li>
         </ul>
-        <ul>
-            <li>
-                <a th:href="@{/view-products}">Baby Boy</a>
-                <div>
-                    <a th:href="@{/baby-boy-kits}">Kits</a>
-                </div>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a th:href="@{/view-products}">Girl</a>
-                <div>
-                    <a th:href="@{/girl-jackets}">Jackets</a>
-                </div>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a th:href="@{/view-products}">Boy</a>
-                <div>
-                    <a th:href="@{/boy-jackets}">Jackets</a>
-                </div>
-            </li>
-        </ul>
+
     </nav>
 
 </header>
-
 </body>
 </html>

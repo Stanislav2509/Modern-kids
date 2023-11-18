@@ -77,33 +77,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductViewModel> getAllViewModel() {
-        List<Product> products = productRepository.findAll();
-        List<ProductViewModel> productViewModels = new ArrayList<>();
+    public List<ProductViewModel> getAllByTypeAndCategory(TypeProduct type, Category category) {
+        List<Product> products = productRepository.findAllByTypeAndCategory(type, category);
+        return mapProductViewModels(products);
+    }
 
-        for (Product product : products) {
-            ProductViewModel productViewModel = new ProductViewModel();
-            productViewModel.setName(product.getName());
-            productViewModel.setCount(product.getCount());
-            productViewModel.setOrigin(product.getOrigin());
-            productViewModel.setBrand(product.getBrand());
-            productViewModel.setPrice(product.getPrice());
-            productViewModel.setImageURL(product.getImageURL());
-            Optional<TypeProduct> type = typeProductRepository.findById(product.getType().getId());
-            type.ifPresent(typeProduct -> productViewModel.setType(typeProduct.getName()));
 
-            Optional<Category> category = categoryRepository.findById(product.getCategory().getId());
-            category.ifPresent(value -> productViewModel.setCategory(value.getName()));
-            List<String> agesName = new ArrayList<>();
-            Set<Age> ages = product.getAges();
-            for (Age age : ages) {
-                Optional<Age> currAge = ageRepository.findById(age.getId());
-                currAge.ifPresent(value -> agesName.add(value.getAge()));
-            }
-            productViewModel.setAges(agesName);
-            productViewModels.add(productViewModel);
+
+    @Override
+    public List<ProductViewModel> getAllByCategoryId(Long categoryId) {
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        List<Product> products = new ArrayList<>();
+        if(category.isPresent()){
+             products= productRepository.findAllByCategory(category.get());
         }
-        return productViewModels;
+        return mapProductViewModels(products);
     }
 
     private boolean uploadPicture(MultipartFile file, String filePath){
@@ -120,5 +108,32 @@ public class ProductServiceImpl implements ProductService {
             System.out.println(e.getMessage());
         }
         return false;
+    }
+    private List<ProductViewModel> mapProductViewModels(List<Product> products) {
+        List<ProductViewModel> productViewModels = new ArrayList<>();
+
+        for (Product product : products) {
+            ProductViewModel productViewModel = new ProductViewModel();
+            productViewModel.setName(product.getName());
+            productViewModel.setCount(product.getCount());
+            productViewModel.setOrigin(product.getOrigin());
+            productViewModel.setBrand(product.getBrand());
+            productViewModel.setPrice(product.getPrice());
+            productViewModel.setImageURL(product.getImageURL());
+            Optional<TypeProduct> currType = typeProductRepository.findById(product.getType().getId());
+            currType.ifPresent(typeProduct -> productViewModel.setType(typeProduct.getName()));
+
+            Optional<Category> currCategory = categoryRepository.findById(product.getCategory().getId());
+            currCategory.ifPresent(value -> productViewModel.setCategory(value.getName()));
+            List<String> agesName = new ArrayList<>();
+            Set<Age> ages = product.getAges();
+            for (Age age : ages) {
+                Optional<Age> currAge = ageRepository.findById(age.getId());
+                currAge.ifPresent(value -> agesName.add(value.getAge()));
+            }
+            productViewModel.setAges(agesName);
+            productViewModels.add(productViewModel);
+        }
+        return productViewModels;
     }
 }

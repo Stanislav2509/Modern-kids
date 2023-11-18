@@ -11,4 +11,8 @@ public interface TypeProductService {
     void add(AddTypeProductBindingModel addTypeProductBindingModel);
 
     boolean isUniqueTypeProduct(String value);
+
+    TypeProduct getByName(String type);
+
+    TypeProduct getById(Long typeId);
 }

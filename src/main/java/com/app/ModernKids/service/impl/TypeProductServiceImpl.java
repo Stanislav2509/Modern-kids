@@ -7,6 +7,7 @@ import com.app.ModernKids.repo.TypeProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TypeProductServiceImpl implements TypeProductService {
@@ -31,5 +32,22 @@ public class TypeProductServiceImpl implements TypeProductService {
     @Override
     public boolean isUniqueTypeProduct(String name) {
         return typeProductRepository.findByName(name) == null;
+    }
+
+    @Override
+    public TypeProduct getByName(String type) {
+        return typeProductRepository.findByName(type);
+    }
+
+    @Override
+    public TypeProduct getById(Long typeId) {
+        Optional<TypeProduct> typeProduct = typeProductRepository.findById(typeId);
+        if(typeProduct.isPresent()) {
+            TypeProduct type = new TypeProduct();
+            type.setId(typeProduct.get().getId());
+            type.setName(typeProduct.get().getName());
+            return type;
+        }
+        return null;
     }
 }

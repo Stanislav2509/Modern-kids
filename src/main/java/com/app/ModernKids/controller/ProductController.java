@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -63,19 +64,23 @@ public class ProductController {
 
     }
 
-    @GetMapping("/view-products")
-    public ModelAndView viewProducts(){
+    @GetMapping("/view-products/{categoryId}")
+    public ModelAndView viewProducts(@PathVariable("categoryId") Long categoryId){
         ModelAndView modelAndView = new ModelAndView("view-products");
-        List<ProductViewModel> products = productService.getAllViewModel();
+        List<ProductViewModel> products = productService.getAllByCategoryId(categoryId);
         modelAndView.addObject("products", products);
 
         return modelAndView;
     }
 
-    @GetMapping("/baby-girl-kits")
-    public ModelAndView viewBabyGirlKits(){
-        ModelAndView modelAndView = new ModelAndView("baby-girl-kits");
-
+    @GetMapping("/view-products/{categoryId}/{typeId}")
+    public ModelAndView viewBabyGirlKits(@PathVariable("categoryId") Long categoryId,
+                                         @PathVariable("typeId") Long typeId){
+        ModelAndView modelAndView = new ModelAndView("view-products");
+        TypeProduct type = typeProductService.getById(typeId);
+        Category category = categoryService.getById(categoryId);
+        List<ProductViewModel> products = productService.getAllByTypeAndCategory(type, category);
+        modelAndView.addObject("products", products);
         return modelAndView;
     }
 }

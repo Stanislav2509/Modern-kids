@@ -6,6 +6,7 @@ import com.app.ModernKids.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -18,5 +19,22 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> getAll() {
         return categoryRepository.findAll();
+    }
+
+    @Override
+    public Category getByName(String name) {
+        return categoryRepository.findByName(name);
+    }
+
+    @Override
+    public Category getById(Long categoryId) {
+        Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
+        if(categoryOptional.isPresent()){
+            Category category = new Category();
+            category.setName(categoryOptional.get().getName());
+            category.setId(categoryOptional.get().getId());
+            return category;
+        }
+        return null;
     }
 }
