@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<main>
+    <h1>Login</h1>
+    <div>
+        <div>
+            <form th:action="@{/login}" th:method="POST">
+                <div>
+                    <div>
+                        <label for="email">Email</label>
+                    </div>
+                    <div>
+                        <input id="email" name="email" th:value="${email}" type="text">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="password">Password</label>
+                    </div>
+                    <div>
+                        <input id="password" name="password" type="password">
+                    </div>
+                </div>
+
+                <p th:if="${bad_credentials}" >
+                    Invalid username or password.
+                </p>
+
+                <div>
+                    <input type="submit" value="login">
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
