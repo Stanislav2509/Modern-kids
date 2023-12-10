@@ -1,22 +1,20 @@
 package com.app.ModernKids.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "queries")
 public class Query extends BaseEntity{
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
     @Email
     @NotNull
     private String email;
@@ -25,4 +23,6 @@ public class Query extends BaseEntity{
     @NotNull
     private String message;
 
+    @ManyToOne
+    private Status status;
 }

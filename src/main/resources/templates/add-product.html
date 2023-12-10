@@ -2,99 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/adding-style.css}" rel="stylesheet" />
     <title>Add Product</title>
 </head>
 <body>
+<a href="/"><img class="logo" src="/images/logo.jpg" alt=""> </a>
 <main>
-    <h1>Add Product</h1>
-    <form th:action="@{/add-product}" th:method="POST" th:object="${addProductBindingModel}" enctype="multipart/form-data">
-        <div>
-            <div>
-                <label for="productName">Name:</label>
+    <section>
+        <form th:action="@{/add-product}" th:method="POST" th:object="${addProductBindingModel}" enctype="multipart/form-data">
+            <h1>Add Product</h1>
+            <div class="container">
+                <input id="productName" type="text" name="name" th:field="*{name}" placeholder="Name">
+                <small th:if="${#fields.hasErrors('name')}"
+                       th:errors="*{name}" ></small>
             </div>
-            <div>
-                <input id="productName" type="text" name="name" th:field="*{name}">
+            <div class="container">
+                <input id="productPrice" type="text" name="price" th:field="*{price}" placeholder="Price">
+                <small th:if="${#fields.hasErrors('price')}"
+                       th:errors="*{price}" ></small>
             </div>
-        </div>
-        <div>
-            <div>
-                <label for="productPrice">Price:</label>
+            <div class="container">
+                <input id="productPicture" type="file" name="picture" th:field="*{picture}" placeholder="Picture" required>
+                <small th:if="${#fields.hasErrors('price')}"
+                       th:errors="*{picture}" ></small>
             </div>
-            <div>
-                <input id="productPrice" type="text" name="price" th:field="*{price}">
+            <div class="container">
+                <input id="productBrand" type="text" name="brand" th:field="*{brand}" placeholder="Brand">
+                <small th:if="${#fields.hasErrors('brand')}"
+                       th:errors="*{brand}" ></small>
             </div>
-        </div>
-        <div>
-            <div>
-                <label for="productPicture">Picture:</label>
+            <div class="container">
+                <input id="count" type="number" name="count"  placeholder="Count">
+                <small th:if="${#fields.hasErrors('count')}"
+                       th:errors="*{count}" ></small>
             </div>
-            <div>
-                <input id="productPicture" type="file" name="picture" th:field="*{picture}">
+            <div class="container">
+                <input id="productOrigin" type="text" name="origin" th:field="*{origin}" placeholder="Origin">
+                <small th:if="${#fields.hasErrors('origin')}"
+                       th:errors="*{origin}" ></small>
             </div>
-        </div>
-        <div>
-            <div>
-                <label for="productBrand">Brand:</label>
-            </div>
-            <div>
-                <input id="productBrand" type="text" name="brand" th:field="*{brand}">
-            </div>
-        </div>
-        <div>
-            <div>
-                <label for="productCount">Count:</label>
-            </div>
-            <div>
-                <input id="productCount" type="number" name="count" th:field="*{count}">
-            </div>
-        </div>
-        <div>
-            <div>
-                <label for="productOrigin">Origin:</label>
-            </div>
-            <div>
-                <input id="productOrigin" type="text" name="origin" th:field="*{origin}">
-            </div>
-        </div>
-        <div>
-            <div>
-                <label for="productAges">Ages:</label>
-            </div>
-            <div>
-                <input th:each="age: ${ages}" id="productAges"
-                       type="checkbox" name="ages" th:field="*{ages}"
-                        th:text="${age.getAge()}"
-                       th:value="${age.getAge()}">
+            <div >
+                <select name="age" id="productAges" required>
+                    <option value="" selected disabled>Select Age</option>
+                    <option th:each="age: ${ages}" th:text="${age.getAge()}"></option>
 
-            </div>
-        </div>
-        <div>
-            <div>
-                <label for="productCategory">Category: </label>
-            </div>
-            <div>
-                <select name="category" id="productCategory">
-                    <option value="" selected disabled>Select Category</option>
-                    <option th:each="category: ${categories}"
-                            th:text="${category.getName()}">
-
-                    </option>
                 </select>
+
             </div>
-        </div>
-        <div>
-            <div><label for="productType">Type: </label></div>
             <div>
-                <select name="type" id="productType">
+                <div >
+                    <select name="category" id="productCategory" required>
+                        <option value="" selected disabled>Select Category</option>
+                        <option th:each="category: ${categories}"
+                                th:text="${category.getName()}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div >
+                    <select name="collection" id="productCollection" required>
+                        <option value="" selected disabled>Select Collection</option>
+                        <option th:each="collection: ${collections}"
+                                th:text="${collection.getName()}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <select name="type" id="productType" required>
                     <option value="" selected disabled>Select Type</option>
                     <option th:each="type: ${types}" th:text="${type.getName()}"></option>
+
                 </select>
+
             </div>
-        </div>
-        <div>
-            <input type="submit" value="Add">
-        </div>
-    </form>
+            <button class="btn_submit" type="submit">ADD</button>
+        </form>
+        <section class="table_container">
+        <table>
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Age</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:unless="${productsAges.isEmpty()}" th:each="productsAge: ${productsAges}">
+                <td class="image"><img th:src="'/images/' + ${productsAge.getProduct().getImageURL()}"></td>
+                <td><a href=""><span th:text="${productsAge.getProduct().getName()}"></span></a>
+                <td><span th:text="${productsAge.getAge().getAge()}"></span></td>
+                <td><span th:text="${productsAge.getCount()}"></span></td>
+                <td><span th:text="${productsAge.getProduct().getPrice()} + ' BGN'"></span></td>
+                <td>
+                    <form th:method="GET" th:action="@{/update-product/{id}(id=${productsAge.getProduct().getId()})}">
+                        <input class="btn btn-update" type="submit" value="UPDATE">
+                    </form>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        </section>
+    </section>
+
 </main>
 </body>
 </html>

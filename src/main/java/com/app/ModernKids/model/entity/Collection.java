@@ -1,8 +1,7 @@
 package com.app.ModernKids.model.entity;
 
-import com.app.ModernKids.model.enums.CategoryName;
+import com.app.ModernKids.model.dto.AddCollectionBindingModel;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -14,10 +13,11 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "categories")
-public class Category extends BaseEntity{
+@Table(name = "collections")
+public class Collection extends BaseEntity{
     @NotBlank
     private String name;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    @OneToMany(mappedBy = "collection")
     private Set<Product> products;
+
 }

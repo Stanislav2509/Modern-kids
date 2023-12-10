@@ -18,4 +18,8 @@ public class Status extends BaseEntity {
     private String name;
     @OneToMany(mappedBy = "status")
     private Set<Order> orders;
+    @OneToMany(mappedBy = "status")
+    private Set<Purchase> purchases;
+    @OneToMany(mappedBy = "status")
+    private Set<Query> queries;
 }

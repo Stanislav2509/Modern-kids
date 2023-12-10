@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 public class ProductViewModel {
+    private Long id;
     private String name;
     private Double price;
     private String imageURL;

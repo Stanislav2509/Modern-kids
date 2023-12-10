@@ -2,9 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/home-style.css}" rel="stylesheet" />
+    <link th:href="@{/css/footer-style.css}" rel="stylesheet"/>
     <title>Modern kids</title>
 </head>
 <body>
     <div th:replace="~{fragments/navigation}"></div>
+    <main>
+        <section class="slideshow">
+
+            <div class="image fade">
+                <img  src="images/christmas-collection.png" alt="">
+                <div class="collection">
+                    <p>See the most beautiful</p><p> Christmas collection</p>
+                    <form th:method="GET"
+                          th:action="@{/view-collection/{collectionName}(collectionName = 'Christmas')}">
+                        <input class="btn" type="submit" value="View">
+                    </form>
+                </div>
+            </div>
+            <div class="image fade">
+                <img  src="images/summer-collection.png" alt="">
+                <div class="collection">
+                    <p>See the most innovative</p><p>Summer collection</p>
+                    <form th:method="GET"
+                          th:action="@{/view-collection/{collectionName}(collectionName = 'Summer')}">
+                        <input class="btn" type="submit" value="View">
+                    </form>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <script th:src="@{/js/slideshow.js}"></script>
+
+    <div th:replace="~{fragments/footer}"></div>
 </body>
 </html>

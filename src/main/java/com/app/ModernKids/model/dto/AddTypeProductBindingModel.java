@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class AddTypeProductBindingModel {
     @NotBlank
-    @UniqueTypeProduct
+    @UniqueTypeProduct(message = "This type is exist")
     private String name;
+
 }

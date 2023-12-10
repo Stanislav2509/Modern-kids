@@ -7,9 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRegisterBindingModel {
-    @Size(min=3, max = 20)
+    @Size(min =3 ,max = 20)
     private String firstName;
-    @Size(min=3, max = 20)
+    @Size(min =3 ,max = 20)
     private String lastName;
     @Min(6)
     private String password;

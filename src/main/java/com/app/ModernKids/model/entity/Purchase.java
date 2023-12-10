@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.catalina.User;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,5 +20,10 @@ public class Purchase extends BaseEntity{
     @ManyToOne
     private Product product;
     @ManyToOne
+    private Status status;
+    @ManyToOne
     private Order order;
+    @ManyToOne
+    private UserEntity user;
+    private String age;
 }

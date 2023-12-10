@@ -2,41 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/authentication-style.css}" rel="stylesheet">
     <title>Login</title>
 </head>
 <body>
+<div th:replace="~{fragments/navigation}"></div>
 <main>
-    <h1>Login</h1>
-    <div>
+    <img class="img" src="/images/login.png" alt="">
+
         <div>
+            <h1 class="title">Login</h1>
             <form th:action="@{/login}" th:method="POST">
-                <div>
+
+                <div class="user-data">
                     <div>
-                        <label for="email">Email</label>
+                        <input id="email" name="email" th:value="${email}" type="text" placeholder="Email" required>
                     </div>
+
                     <div>
-                        <input id="email" name="email" th:value="${email}" type="text">
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <label for="password">Password</label>
-                    </div>
-                    <div>
-                        <input id="password" name="password" type="password">
+                        <input id="password" name="password" type="password" placeholder="Password" required>
                     </div>
                 </div>
 
-                <p th:if="${bad_credentials}" >
-                    Invalid username or password.
-                </p>
-
-                <div>
-                    <input type="submit" value="login">
+                <div class="btn_submit">
+                    <button type="submit">Login</button>
                 </div>
+
             </form>
+            <div class="not_profile">
+                <span>Don't have a profile?</span>
+                <a href="/register">Sign up!</a>
+            </div>
         </div>
-    </div>
 </main>
 
 </body>

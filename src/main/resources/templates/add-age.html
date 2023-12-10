@@ -2,20 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/adding-style.css}" rel="stylesheet" />
     <title>Add Age</title>
 </head>
 <body>
+<a href="/"><img class="logo" src="/images/logo.jpg" alt=""> </a>
 <main>
     <h1>Add Age</h1>
+    <section>
     <form th:action="@{/add-age}" th:method = "POST" th:object="${addAgeBindingModel}">
+        <div th:if="${hasDeletedError}" >
+            <p class="register_error">You can't delete this age</p>
+        </div>
+
         <div>
-            <div>
-                <label for="age">Age</label>
+            <div class="container">
+                <input id="age" type="text" name="age" value="" placeholder="Age">
+                <small th:if="${#fields.hasErrors('age')}"
+                       th:errors="*{age}" ></small>
             </div>
-            <div>
-                <input id="age" type="text" name="age" th:field="*{age}">
+            <div >
+                <button class="btn_submit" type="submit">ADD</button>
             </div>
-            <div><input type="submit" value="Add"></div>
+
         </div>
     </form>
 
@@ -23,6 +32,7 @@
         <thead>
         <tr>
             <th>Ages</th>
+            <th colspan="2">Buttons</th>
         </tr>
         </thead>
         <tbody>
@@ -31,10 +41,22 @@
         </tr>
         <tr th:unless="${ages.isEmpty()}" th:each="age: ${ages}">
             <td th:text="${age.getAge()}"></td>
+            <td>
+                <form th:method="DELETE" th:action="@{/delete-age/{id}(id=${age.getId()})}">
+                    <input class="btn btn-delete" type="submit" value="DELETE">
+                </form>
+            </td>
+
+            <td>
+                <form th:method="GET" th:action="@{/update-age/{id}(id=${age.getId()})}">
+                    <input class="btn btn-update" type="submit" value="UPDATE">
+                </form>
+            </td>
         </tr>
 
         </tbody>
     </table>
+    </section>
 </main>
 
 </body>

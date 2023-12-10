@@ -14,6 +14,7 @@ import java.util.Set;
 @Table(name = "products")
 public class Product extends BaseEntity{
     @NotBlank
+    @Column(unique = true)
     private String name;
     @Positive
     private Double price;
@@ -21,21 +22,22 @@ public class Product extends BaseEntity{
     private String imageURL;
     @NotBlank
     private String brand;
-    @Positive
-    private int count;
     @NotBlank
     private String origin;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "products_ages",
-            joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "age_id", referencedColumnName = "id")}
-    )
-    private Set<Age> ages;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "products_ages",
+//            joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")},
+//            inverseJoinColumns = {@JoinColumn(name = "age_id", referencedColumnName = "id")}
+//    )
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "product")
+    private Set<ProductAge> productAges;
     @ManyToOne
     private Category category;
     @ManyToOne
     private TypeProduct type;
+    @ManyToOne
+    private Collection collection;
 
     @OneToMany(mappedBy = "product")
     private Set<Purchase> purchases;

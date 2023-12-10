@@ -2,38 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/adding-style.css}" rel="stylesheet" />
     <title>Add Type Product</title>
 </head>
 <body>
+<a href="/"><img class="logo" src="/images/logo.jpg" alt=""> </a>
 <main>
     <h1>Add Type Product</h1>
-    <form th:action="@{/add-type-product}" th:method = "POST" th:object="${addTypeProductBindingModel}">
-        <div>
-            <div>
-                <label for="typeProduct">Type product</label>
+    <section>
+        <form th:action="@{/add-type-product}" th:method = "POST" th:object="${addTypeProductBindingModel}">
+            <div th:if="${hasDeletedError}" >
+                <p class="register_error">You can't delete this type</p>
             </div>
             <div>
-                <input id="typeProduct" type="text" name="name"  th:field="*{name}">
+                <div class="container">
+                    <input id="name" type="text" name="name" value="" placeholder="Type product">
+                    <small th:if="${#fields.hasErrors('name')}"
+                           th:errors="*{name}" ></small>
+                </div>
+                <button class="btn_submit" type="submit">ADD</button>
             </div>
-            <div><input type="submit" value="Add"></div>
-        </div>
-    </form>
+        </form>
 
-    <table>
-        <thead>
+        <table>
+            <thead>
             <tr>
                 <th>Type Products</th>
+                <th colspan="2">Buttons</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             <tr th:if="${types.isEmpty()}">
                 <td>No product types found</td>
             </tr>
             <tr th:unless="${types.isEmpty()}" th:each="type: ${types}">
                 <td th:text="${type.getName()}"></td>
+                <td>
+                    <form th:method="DELETE" th:action="@{/delete-type-product/{id}(id=${type.getId()})}">
+                        <input class="btn btn-delete" type="submit" value="DELETE">
+                    </form>
+                </td>
+
+                <td>
+                    <form th:method="GET" th:action="@{/update-type-product/{id}(id=${type.getId()})}">
+                        <input class="btn btn-update" type="submit" value="UPDATE">
+                    </form>
+                </td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </section>
+
 </main>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.app.ModernKids.model.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -16,6 +17,6 @@ import java.util.Set;
 public class TypeProduct extends BaseEntity {
     @NotBlank
     private String name;
-    @OneToMany(mappedBy = "type")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "type")
     private Set<Product> products;
 }

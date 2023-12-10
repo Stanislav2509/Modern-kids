@@ -1,51 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <link th:href="@{/css/nav.css}" rel="stylesheet" />
+    <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v6.5.1/css/all.css"/>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<!--    <h5 class="text-center text-white mt-5">Welcome to MobiLeLeLe,
-        <th:block sec:authorize="isAuthenticated()">
-            <th:block sec:authentication="name"></th:block>
-        </th:block>
-        <th:block sec:authorize="!isAuthenticated()">
-            Anonymous!
-        </th:block>
-
-    </h5>-->
 <header  th:fragment="navigation">
-    <nav>
-        <p>Welcome
-            <th:block sec:authorize="isAuthenticated()">
-                <th:block sec:authentication="name"></th:block>
-            </th:block>
-        </p>
-        <ul>
-            <li sec:authorize="!isAuthenticated()"> <a th:href="@{/login}">Login</a></li>
-            <li sec:authorize="!isAuthenticated()"> <a th:href="@{/register}">Register</a></li>
+    <nav class="secondary-nav">
+        <ul class="administration">
+            <li sec:authorize="!isAuthenticated()"> <a href="/login">Login</a></li>
+            <li sec:authorize="!isAuthenticated()"> <a href="/register">Register</a></li>
             <li sec:authorize="isAuthenticated()">
                 <form th:method="post"
                       th:action="@{/logout}">
-                    <input type="submit"  value="Logout"/>
+                    <input class="logout-btn" type="submit"  value="Logout"/>
                 </form>
             </li>
-            <li sec:authorize="isAuthenticated()"> <a th:href="@{/add-type-product}">Add type product</a></li>
-            <li sec:authorize="isAuthenticated()"> <a th:href="@{/add-age}">Add age</a></li>
-            <li sec:authorize="isAuthenticated()"> <a th:href="@{/add-product}">Add product</a></li>
-        </ul>
-        <ul th:each="category: ${categories}">
-            <li>
-                <a th:href="@{/view-products/{categoryId}(categoryId=${category.id})}" th:text="${category.name}"></a>
-                <div th:each="type: ${types}">
-                    <a th:href="@{/view-products/{categoryId}/{typeId}(categoryId=${category.id}, typeId=${type.id})}"
-                       th:text="${type.name}"></a>
-                </div>
+            <li sec:authorize="hasRole('ADMIN')"> <a th:href="@{/add-type-product}">Add type product</a></li>
+            <li sec:authorize="hasRole('ADMIN')"> <a th:href="@{/add-age}">Add age</a></li>
+            <li sec:authorize="hasRole('ADMIN')"> <a th:href="@{/add-collection}">Add collection</a></li>
+            <li sec:authorize="hasRole('ADMIN')"> <a th:href="@{/add-product}">Add product</a></li>
+            <li sec:authorize="hasRole('ADMIN')"> <form th:action="@{/new-orders}" th:method="GET">
+                    <button class="btn_nav" type="submit" >Orders</button>
+                </form>
+            </li>
+            <li><a th:href="@{contact-form}">Contact Form</a></li>
+            <li sec:authorize="hasRole('ADMIN')"> <form th:action="@{/queries}" th:method="GET">
+                <button class="btn_nav" type="submit" >Queries</button>
+            </form>
             </li>
         </ul>
-
     </nav>
+    <nav class="main-nav">
+        <a href="/"><img class="logo" src="/images/logo.jpg" alt=""> </a>
+        <ul class="categories-list">
+            <li class="dropdown" th:each="category: ${categories}">
+                    <a  th:href="@{/view-products/{categoryId}(categoryId=${category.id})}" th:text="${category.name}"></a>
 
+                    <ul class="types">
+                            <li th:each="type: ${types.get(category.name)}">
+                                <a th:href="@{/view-products/{categoryId}/{typeId}(categoryId=${category.id}, typeId=${type.id})}"
+                                th:text="${type.name}"></a>
+                            </li>
+                        </ul>
+
+            </li>
+
+        </ul>
+
+        <form th:action="@{/cart}" method="GET">
+            <button class="btn_cart" type="submit"><i class="fa-solid fa-cart-shopping"></i></button>
+        </form>
+    </nav>
+    <hr>
 </header>
 </body>
 </html>

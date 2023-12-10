@@ -10,6 +10,6 @@ import lombok.Setter;
 @Setter
 public class AddAgeBindingModel {
     @NotBlank
-    @UniqueAge
+    @UniqueAge(message = "This age is exist")
     private String age;
 }
