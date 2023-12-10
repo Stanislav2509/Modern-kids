@@ -179,7 +179,7 @@ public class ProductController {
         }
 
         List<Age> ageList = productAgeService.getAgesOnProduct(product);
-        List<TypeProduct> types = typeProductService.getAll();
+        Map<String, List<TypeProduct>> types = typeProductService.getTypes();
         List<Category> categories = categoryService.getAll();
         modelAndView.addObject("types", types);
         modelAndView.addObject("categories", categories);
