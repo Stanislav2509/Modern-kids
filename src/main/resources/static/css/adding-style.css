@@ -1,0 +1,164 @@
+body{
+    background-color: rgb(226, 226, 226);
+    font-family: sans-serif;
+}
+
+.logo{
+    border-radius: 50%;
+    width: 60px;
+    aspect-ratio: 1/1;
+    margin-right: 15%;
+}
+
+main{
+    text-align: center;
+}
+
+section{
+    display: flex;
+    gap: 130px;
+    justify-content: center;
+}
+
+div input{
+    height: 60px;
+    width: 300px;
+    border: none;
+    border-bottom: 2px solid grey;
+    outline: none;
+    background-color: rgb(226, 226, 226);
+
+}
+
+.container input:hover {
+    border-bottom: 2px solid rgb(220, 41, 100);
+
+}
+
+.container{
+    position: relative;
+}
+
+.container input:focus + small{
+    display: none;
+}
+
+
+small{
+    position: absolute;
+    top: 16px;
+    right: 0px;
+    background-color: rgb(237, 105, 149);
+    color: white;
+    font-weight: bold;
+    width: auto;
+    height: 20px;
+    padding: 6px 6px;
+    border-radius:8px ;
+}
+
+.btn_submit{
+    height: 40px;
+    width: 200px;
+    background-color: rgb(237, 105, 149);
+    border: none;
+    font-weight: bold;
+    color: white;
+    margin-top: 18px;
+}
+
+.btn_submit:hover{
+    background-color: rgb(225, 25, 92);
+    cursor: pointer;
+}
+
+.table_container{
+    height: calc(100vh - 150px);
+    overflow-x: auto;
+}
+
+table{
+    border-collapse: collapse;
+    font-size: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 300p;
+}
+
+table th, table td{
+    padding: 12px 15px;
+}
+
+thead tr{
+    background-color: rgb(237, 105, 149);
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+
+
+tbody tr:nth-of-type(even), tbody tr:nth-of-type(even) td a{
+    background-color: #f3f3f3;
+    color: black;
+}
+
+
+.btn{
+    padding: 8px 12px;
+}
+
+.btn-delete:hover{
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-update:hover{
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+
+input::file-selector-button{
+    margin-top: 10px;
+    margin-left: 12px;
+    width: 120px;
+    height: 40px;
+    color: rgb(132, 126, 126);
+    background-color: rgb(226, 226, 226);
+    border: 2px solid gray;
+    border-radius: 6px;
+    cursor: pointer;
+
+}
+
+input::file-selector-button:hover{
+    background-color: rgb(216, 212, 212);
+
+}
+
+select{
+    height: 60px;
+    width: 300px;
+    border: none;
+    border-bottom: 2px solid grey;
+    outline: none;
+    background-color: rgb(226, 226, 226);
+}
+
+select:hover{
+    border-bottom: 2px solid rgb(220, 41, 100);
+}
+
+.image{
+    width: 180px;
+    height: 180px;
+}
+
+.image img{
+    width: 70%;
+    height: 70%;
+}

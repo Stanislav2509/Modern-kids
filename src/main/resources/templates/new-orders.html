@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/cart-style.css}" rel="stylesheet" />
+    <link th:href="@{/css/new-orders.css}" rel="stylesheet" />
+    <title>New orders</title>
+</head>
+<body>
+<a href="/"><img class="logo" src="/images/logo.jpg" alt=""> </a>
+<main class="orders">
+    <section class="new-orders">
+        <p >NEW ORDERS</p>
+        <article class="order" th:each="newOrder: ${newOrders}">
+            <form th:action="@{/courier-order/{id}(id=${newOrder.getId()})}" th:method="PATCH">
+                <p class="client_data">Client data: <span th:text="${newOrder.getUser().getFirstName()} + ' ' +
+                ${newOrder.getUser().getLastName()}"></span>
+                    ; GSM: <span th:text="${newOrder.getUser().getPhoneNumber()}"></span></p>
+                <p class="client_data">Email: <span th:text="${newOrder.getUser().getEmail()}"></span>
+                    ; Address: <span th:text="${newOrder.getUser().getAddress()}"></span></p>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="purchase: ${newOrder.getPurchases()}">
+                        <td class="image"><img th:src="'/images/' + ${purchase.getProduct().getImageURL()}"></td>
+                        <td><a class="product-name" href=""><span th:text="${purchase.getProduct().getName()}"></span></a>
+                            <!--                        <span class="product-age" th:text="${purchase.getProduct().}"></span></td>-->
+                        <td><span th:text="${purchase.getAge()}"></span></td>
+                        <td><span th:text="${purchase.getCount()}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p class="total_amount" th:text="'Total amount: ' + ${newOrder.getPrice()} + ' BGN'"></p>
+                <div>
+                    <button class="btn btn_courier" type="submit"> Sent by Courier</button>
+                </div>
+            </form>
+        </article>
+    </section>
+
+    <section class="send_courier_orders">
+        <p>SEND BY COURIER ORDERS</p>
+        <article class="order" th:each="courierOrder: ${sendByCourierOrders}">
+            <p class="client_data">Client data: <span th:text="${courierOrder.getUser().getFirstName()} + ' ' +
+                ${courierOrder.getUser().getLastName()}"></span>
+                ; GSM: <span th:text="${courierOrder.getUser().getPhoneNumber()}"></span></p>
+            <p class="client_data">Email: <span th:text="${courierOrder.getUser().getEmail()}"></span>
+                ; Address: <span th:text="${courierOrder.getUser().getAddress()}"></span></p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="purchase: ${courierOrder.getPurchases()}">
+                    <td class="image"><img th:src="'/images/' + ${purchase.getProduct().getImageURL()}"></td>
+                    <td><a class="product-name" href=""><span th:text="${purchase.getProduct().getName()}"></span></a>
+                        <!--                        <span class="product-age" th:text="${purchase.getProduct().}"></span></td>-->
+                    <td><span th:text="${purchase.getAge()}"></span></td>
+                    <td><span th:text="${purchase.getCount()}"></span></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+            <p class="total_amount" th:text="'Total amount: ' + ${courierOrder.getPrice()} + ' BGN'"></p>
+            <div class="buttons">
+                <form th:action="@{/completed-order/{id}(id=${courierOrder.getId()})}" th:method="PATCH">
+                    <button class="btn btn_completed" type="submit">Completed</button>
+                </form>
+                <form th:action="@{/failed-order/{id}(id= ${courierOrder.getId()})}" th:method="PATCH">
+                    <button class="btn btn_failed" type="submit">Failed</button>
+                </form>
+            </div>
+        </article>
+    </section>
+</main>
+</body>
+</html>

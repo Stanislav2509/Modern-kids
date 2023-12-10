@@ -1,0 +1,184 @@
+body{
+    background-color: rgb(226, 226, 226);
+}
+
+.logo{
+    border-radius: 50%;
+    width: 60px;
+    aspect-ratio: 1/1;
+    margin-right: 15%;
+}
+
+.orders{
+    display: flex;
+    gap: 60px;
+    padding: 20px;
+    flex-direction: row;
+}
+
+.new-orders{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    flex-direction: column;
+    text-align: center;
+}
+
+.new-orders > p{
+    color: rgb(17, 179, 17);
+    font-size: 22px;
+    font-weight: bolder;
+    text-decoration: underline;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serifs;
+}
+.order{
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.order p{
+    font-size: 18px;
+    font-weight: normal;
+    color:rgb(161, 161, 9);
+}
+
+.client_data span{
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 16px;
+    font-family: sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+}
+
+table th, table td{
+    padding: 12px 15px;
+}
+
+thead tr{
+    background-color: rgb(31, 194, 23);
+    color: #ffffff;
+    text-align: center;
+    font-size: 18px;
+}
+
+tbody tr {
+    border-bottom: 2px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even), tbody tr:nth-of-type(even) td a{
+    background-color: #f3f3f3;
+    color: black;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid rgb(4, 173, 4);
+}
+
+tbody tr:nth-of-type(odd),tbody tr:nth-of-type(odd) td a {
+    font-weight: bold;
+    color: rgb(32, 197, 32);
+}
+
+
+.image{
+    width: 180px;
+    height: 180px;
+}
+
+.image img{
+    width: 70%;
+    height: 70%;
+}
+
+.total_amount{
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 200px;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn{
+    padding: 8px 12px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+.btn_courier{
+    background-color: rgb(223, 161, 47);
+}
+
+
+.btn_courier:hover{
+    cursor: pointer;
+    background-color: rgb(251, 212, 18);
+}
+
+
+
+.send_courier_orders{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 50%;
+}
+
+.send_courier_orders > p{
+    color: rgb(231, 173, 64);
+    font-size: 22px;
+    font-weight: bolder;
+    text-decoration: underline;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serifs;
+}
+
+.send_courier_orders .order{
+    text-align: center;
+}
+
+.send_courier_orders thead tr{
+    background-color: rgb(255, 225, 0);
+}
+
+.send_courier_orders tbody tr:last-of-type {
+    border-bottom: 2px solid rgb(253, 190, 73);
+}
+
+.send_courier_orders tbody tr:nth-of-type(odd),.send_courier_orders tbody tr:nth-of-type(odd) td a {
+    color: rgb(239, 168, 37);
+}
+
+.send_courier_orders .buttons{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+
+.btn_completed{
+    background-color: green;
+}
+
+.btn_completed:hover{
+    cursor: pointer;
+    background-color: rgb(17, 199, 17);
+}
+
+.btn_failed{
+    background-color: rgb(180, 28, 28);
+}
+
+.btn_failed:hover{
+    cursor: pointer;
+    background-color: rgb(255, 17, 17);
+}

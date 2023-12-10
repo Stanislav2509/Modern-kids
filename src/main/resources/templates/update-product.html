@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/adding-style.css}" rel="stylesheet" />
+
+    <title>Update Product</title>
+</head>
+<body>
+<a href="/"><img class="logo" src="/images/logo.jpg" alt=""> </a>
+<main>
+    <form th:action="@{/update-product/{id}(id = ${id})}" th:method = "PATCH" th:object="${updateProductBindingModel}"  enctype="multipart/form-data">
+            <h1>Update Product</h1>
+            <p th:text="${product.name}"></p>
+
+            <div class="container">
+                <input id="price" type="text" name="price" th:value="${product.price}" placeholder="Price">
+            </div>
+
+             <div class="container" th:each="age: ${ageCount.keySet()}">
+                <input id="ages" type="text" name="ages" th:value="${age}" readonly>
+
+                 <input id="counts" type="number" name="counts" th:value="${ageCount.get(age)}"
+                          placeholder="Count">
+
+            </div>
+
+
+            <div >
+                <select name="newAge" id="productAges">
+                    <option value="" selected disabled>Select Age</option>
+                    <option th:each="age: ${ages}" th:text="${age.getAge()}"></option>
+                </select>
+            </div>
+        <div class="container">
+            <input id="count" type="text" name="count"  placeholder="Count">
+        </div>
+
+            <button class="btn_submit" type="submit">Update</button>
+        </form>
+</main>
+</body>
+</html>

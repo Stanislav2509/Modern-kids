@@ -1,0 +1,116 @@
+main{
+    display: flex;
+    gap: 230px;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.img{
+    width: 606px;
+    height: 600px;
+
+}
+
+.title{
+    text-align: center;
+}
+
+.register_error{
+    background-color: rgb(237, 105, 149);
+    color: white;
+    font-weight: bold;
+    width: 200px;
+    height: 20px;
+    padding: 6px 6px;
+    border-radius:8px ;
+    margin: auto;
+}
+
+.user-data{
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+}
+
+.user-data div input{
+    height: 60px;
+    width: 500px;
+    border: none;
+    border-bottom: 2px solid grey;
+    outline: none;
+
+}
+
+.user-data div input:hover {
+    border-bottom: 2px solid rgb(220, 41, 100);
+}
+
+
+.user-data div{
+    position: relative;
+}
+
+.user-data div input:focus + small{
+    display: none;
+}
+
+
+small{
+    position: absolute;
+    top: 16px;
+    right: 0px;
+    background-color: rgb(237, 105, 149);
+    color: white;
+    font-weight: bold;
+    width: auto;
+    height: 20px;
+    padding: 6px 6px;
+    border-radius:8px ;
+}
+
+.btn_submit{
+    margin-top: 72px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.btn_submit button{
+    height: 40px;
+    width: 200px;
+    background-color: rgb(237, 105, 149);
+    border: none;
+    font-weight: bold;
+    color: white;
+}
+
+.btn_submit button:hover{
+    background-color: rgb(225, 25, 92);
+    cursor: pointer;
+}
+
+.not_profile{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.not_profile a{
+    color: rgb(237, 105, 149);
+    font-weight: bolder;
+}
+
+.not_profile a:hover{
+    color: rgb(225, 25, 92);
+}
+
+#message{
+    border: none;
+    border-bottom: 2px solid grey;
+    outline: none;
+    resize: none;
+}
+
+#message:hover{
+    border-bottom: 2px solid rgb(220, 41, 100);
+}

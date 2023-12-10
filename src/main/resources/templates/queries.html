@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/queries-style.css}" rel="stylesheet" />
+    <title>Queries</title>
+</head>
+<body>
+<a href="/"><img class="logo" src="/images/logo.jpg" alt=""> </a>
+<section th:each="query: ${queries}">
+    <form th:action="@{/queries{id}(id=${query.getId()})}" th:method="PATCH">
+        <article>
+            <section class="client_data">
+                <div>
+                    <label>Name: </label>
+                    <p th:text="${query.getFullName()}"></p>
+                </div>
+
+                <div>
+                    <label>Email: </label>
+                    <p th:text="${query.getEmail()}"></p>
+                </div>
+
+                <div>
+                    <label>Phone number: </label>
+                    <p th:text="${query.getPhoneNumber()}"></p>
+                </div>
+
+            </section>
+
+            <section class="client_message">
+                <label >Message</label>
+                <p th:text="${query.getMessage()}"></p>
+            </section>
+        </article>
+
+        <button class="btn" type="submit">Answered</button>
+    </form>
+</section>
+
+</body>
+</html>

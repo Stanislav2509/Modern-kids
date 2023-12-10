@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/nav.css}" rel="stylesheet" />
+    <link th:href="@{/css/curr-product-style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/footer-style.css}" rel="stylesheet"/>
+
+    <!--    <script th:src="@{/js/quantity_control.js}"></script>-->
+    <title>Products</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/navigation}"></div>
+<main>
+    <section class="container" >
+        <form th:action="@{/purchase}" th:method="POST" th:object="${purchaseBindingModel}">
+            <input type="hidden" th:value="${product.getId()}" id="productId" name="productId" >
+
+
+            <div>
+                <img class="main-img" th:src="'/images/' + ${product.getImageURL()}">
+                <input type="hidden" th:value="${product.getImageURL()}" id="imageURL" name="imageURL" >
+            </div>
+
+                <div class="content">
+                    <h2 class="title" th:text="${product.getName()}"></h2>
+                    <input type="hidden" th:value="${product.getName()}" id="name" name="name" >
+
+                    <div>
+                        <p>Brand</p>
+                        <p th:text="${product.getBrand()}"></p>
+                    </div>
+                    <div>
+                        <p>Origin</p>
+                        <p th:text="${product.getOrigin()}"></p>
+                    </div>
+                    <div>
+                        <p>Collection</p>
+                        <p th:text="${product.getCollection().getName()}"></p>
+                    </div>
+
+                    <div>
+                        <select class="ages" name="age" required >
+                            <option  value="" selected="" disabled="">Select Age</option>
+                            <option th:each="age1: ${ageList}"
+                                    th:text="${age1.getAge()}">3 to 6 months</option>
+                        </select>
+
+                        <div class="quantity_container">
+                            <a class="minusButton" href="" ><b>-</b></a>
+                            <input type="text"  value="1" id="quantity" name="quantity"
+                                   th:field="*{quantity}" readonly>
+                            <a class="plusButton" href=""  th:pid="10" ><b>+</b></a>                        </div>
+
+                    </div>
+
+
+
+                    <h4 class="price" th:text="${product.getPrice()} + ' BGN'"></h4>
+                    <input type="hidden" th:value="${product.getPrice()}"  id="price" name="price">
+
+
+                    <div th:if="${countError}">
+                        <p>You can't take that many.</p>
+                    </div>
+
+                    <input class="btn-buy" type="submit" value="Buy">
+
+                </div>
+        </form>
+        <div class="delivery_return">
+            <div class="delivery">
+                <h2>Delivery</h2>
+                <ul>
+                    <li>For orders over 100 BGN - Free Shipping.</li>
+                    <li>Delivery to ECONT office - 5.90 BGN</li>
+                    <li>Delivery to ECONT address - 7.90 BGN</li>
+                    <li>Delivery to our site no matter the value - free of charge</li>
+                    <li>Delivery from 2 to 5 working days</li>
+                </ul>
+            </div>
+
+            <div class="return">
+                <h2>Return</h2>
+                <ul>
+                    <li>You can return or replace the product ( s) you have received within fourteen (14) days of delivery.</li>
+                    <li>You need to present payment documents - receipt and invoice.</li>
+                    <li>All amounts are returned by bank transfer within 30 (thirty working days).</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+<script th:src="@{/js/quantity_control.js}"></script>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

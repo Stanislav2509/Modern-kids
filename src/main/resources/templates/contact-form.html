@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/authentication-style.css}" rel="stylesheet" />
+    <title>Contact form</title>
+</head>
+<body>
+<div th:replace="~{fragments/navigation}"></div>
+    <main>
+        <img class="img" src="/images/contacts.png" alt="">
+        <div>
+            <h1 class="title">Contact Form</h1>
+            <form th:action="@{/contact-form}"
+                  th:method="POST"
+                  th:object="${queryBindingModel}">
+
+                <div>
+                    <!--        <div th:if="${hasRegistrationError}" >Registration Error occurred</div>-->
+
+                </div>
+
+                <div class="user-data">
+                    <div>
+                        <input type="text" th:field="*{fullName}" id="fullName" placeholder="Name"
+                               minlength="3" maxlength="20" required>
+                        <small th:if="${#fields.hasErrors('fullName')}"
+                               th:errors="*{fullName}" >Name error msg</small>
+
+                    </div>
+
+                    <div>
+                        <input th:type="email" th:id="email" th:field="*{email}" placeholder="Email" required>
+                        <small th:if="${#fields.hasErrors('email')}"
+                               th:errors="*{email}" >Email error msg</small>
+                    </div>
+
+                    <div>
+                        <input th:type="text" th:id="phoneNumber" th:field="*{phoneNumber}" placeholder="Phone number"
+                               minlength="10" maxlength="13" required>
+                        <small th:if="${#fields.hasErrors('phoneNumber')}"
+                               th:errors="*{phoneNumber}" >Phone number error msg</small>
+                    </div>
+                    <div>
+                        <textarea  id="message" name="message" cols="65" rows="6" th:field="*{message}" placeholder="Message" required ></textarea>
+                        <small th:if="${#fields.hasErrors('message')}"
+                               th:errors="*{message}" >Address name error msg</small>
+                    </div>
+
+                </div>
+
+                <div class="btn_submit">
+                    <button type="submit">Send</button>
+                </div>
+
+
+            </form>
+        </div>
+
+    </main>
+</body>
+</html>

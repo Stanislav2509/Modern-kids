@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/updating.css}" rel="stylesheet" />
+    <title>Update Collection</title>
+</head>
+<body>
+<a href="/"><img class="logo" src="/images/logo.jpg" alt=""> </a>
+<main>
+    <h1>Update Collection</h1>
+
+    <form th:action="@{/update-collection/{id}(id = ${id})}" th:method = "PATCH" th:object="${addCollectionBindingModel}">
+        <div>
+            <div class="container">
+                <input id="name" type="text" name="name" th:value="${collection.name}"
+                       placeholder="Collection name">
+                <small th:if="${#fields.hasErrors('name')}"
+                       th:errors="*{name}" ></small>
+            </div>
+
+            <button class="btn_submit" type="submit">Update</button>
+
+
+        </div>
+    </form>
+</main>
+
+</body>
+</html>

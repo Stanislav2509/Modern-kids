@@ -1,0 +1,91 @@
+.cards{
+    display: flex;
+    gap:20px;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 220px;
+    height: 358px;
+    border: 2px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.thumbnail{
+    width: 220px;
+    height: 260px;
+
+}
+
+.thumbnail_img{
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    padding: 12px 18px;
+    text-align: left;
+}
+
+.content .brand{
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+.content .category{
+    font-size: 18px;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-weight:lighter;
+}
+
+.content .price{
+    font-family: fira sans,Helvetica,Arial,sans-serif;
+    font-weight:bold;
+    font-size: 18px;
+    text-align: right;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    border: none;
+}
+
+.content .sizes{
+    display: none;
+    list-style: none;
+    padding-left: 0px;
+    color: #666;
+    font-size: 16px;
+}
+
+.btn-view{
+    display: none;
+}
+
+.card:hover{
+    height: 450px;
+    overflow-y: auto;
+}
+
+.card::-webkit-scrollbar{
+    width: 6px;
+    background-color: transparent;
+}
+
+.card::-webkit-scrollbar-thumb {
+    background-color: rgb(220, 41, 100);
+    border-radius: 8px;
+}
+
+.card:hover .content .sizes{
+    display: flex;
+    gap:8px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.card:hover .btn-view{
+    display: inline;
+}

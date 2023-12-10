@@ -1,0 +1,56 @@
+body{
+    background-color: rgb(226, 226, 226);
+}
+
+.logo{
+    border-radius: 50%;
+    width: 60px;
+    aspect-ratio: 1/1;
+    margin-right: 15%;
+}
+
+form{
+    border: 2px solid black;
+    border-radius: 6px;
+    padding: 24px 12px;
+    width: 70%;
+    margin: 26px auto;
+}
+
+article{
+    display: flex;
+    justify-content: space-around;
+    gap: 16px;
+}
+
+.client_data{
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    width: 30%;
+    border-right: 2px solid black ;
+}
+
+.client_data p{
+    display: inline-block;
+    font-weight: bolder;;
+    margin-top: 0%;
+}
+
+.client_message{
+    width: 70%;
+    overflow-wrap: break-word;
+}
+
+.btn{
+    width: 130px;
+    height: 40px;
+    background-color: rgb(237, 105, 149);
+    color: white;
+    border-radius: 6px;
+}
+
+.btn:hover{
+    background-color: rgb(225, 25, 92);
+    cursor: pointer;
+}

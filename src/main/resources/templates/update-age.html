@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <link th:href="@{/css/updating.css}" rel="stylesheet" />
+    <title>Update Age</title>
+</head>
+<body>
+<a href="/"><img class="logo" src="/images/logo.jpg" alt=""> </a>
+<main>
+  <h1>Update Age</h1>
+
+  <form th:action="@{/update-age/{id}(id = ${id})}" th:method = "PATCH" th:object="${addAgeBindingModel}">
+    <div>
+      <div class="container">
+        <input id="age" type="text" name="age" th:value="${age.age}" placeholder="Age">
+        <small th:if="${#fields.hasErrors('age')}"
+               th:errors="*{age}" ></small>
+      </div>
+
+      <button class="btn_submit" type="submit">Update</button>
+
+
+    </div>
+  </form>
+</main>
+
+</body>
+</html>

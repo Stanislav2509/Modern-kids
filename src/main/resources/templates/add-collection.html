@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/adding-style.css}" rel="stylesheet" />
+    <title>Add collection</title>
+</head>
+<body>
+
+<a href="/"><img class="logo" src="/images/logo.jpg" alt=""> </a>
+<main>
+    <h1>Add Collection</h1>
+    <section>
+        <form th:action="@{/add-collection}" th:method = "POST" th:object="${addCollectionBindingModel}">
+            <div th:if="${hasDeletedError}" >
+                <p class="register_error">You can't delete this collection</p>
+            </div>
+
+            <div th:if="${hasUpdatedError}" >
+                <p>You can't update this collection</p>
+            </div>
+            <div>
+                <div class="container">
+                    <input id="name" type="text" name="name" value="" placeholder="Collection name">
+                    <small th:if="${#fields.hasErrors('name')}"
+                           th:errors="*{name}" ></small>
+                </div>
+                <div >
+                    <button class="btn_submit" type="submit">ADD</button>
+                </div>
+
+            </div>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Collections</th>
+                <th colspan="2">Buttons</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${collections.isEmpty()}">
+                <td>No collections found</td>
+            </tr>
+            <tr th:unless="${collections.isEmpty()}" th:each="collection: ${collections}">
+                <td th:text="${collection.getName()}"></td>
+                <td>
+                    <form th:method="DELETE" th:action="@{/delete-collection/{id}(id=${collection.getId()})}">
+                        <input class="btn btn-delete" type="submit" value="DELETE">
+                    </form>
+                </td>
+
+                <td>
+                    <form th:method="GET" th:action="@{/update-collection/{id}(id=${collection.getId()})}">
+                        <input class="btn btn-update" type="submit" value="UPDATE">
+                    </form>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>
