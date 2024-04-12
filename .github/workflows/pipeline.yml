@@ -22,6 +22,6 @@ jobs:
     - name: Install NPM dependencies
       run: npm install
     - name: Run unit tests
-    - run: npm run test:unit
+      run: npm run test:unit
     - name: Diplay softuni username
       run: echo "Stasi03"
