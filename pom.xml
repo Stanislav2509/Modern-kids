@@ -80,6 +80,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>25.5.0-beta.1</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

@@ -11,9 +11,9 @@ public class UserRegisterBindingModel {
     private String firstName;
     @Size(min =3 ,max = 20)
     private String lastName;
-    @Min(6)
+    @Size(min = 6)
     private String password;
-    @Min(6)
+    @Size(min = 6)
     private String confirmPassword;
     @NotBlank
     @Email

@@ -68,8 +68,7 @@
                             <input type="checkbox" th:id="${age.age}" class="checkbox" th:field="*{ages}"
                                    th:text="${age.age}"
                                    th:value="${age.age}">
-                            <!--                    <label th:for="${age.age}" class="age-name" th:text="${age.age}">0 to 3 months</label>-->
-                            <!--                    <label th:for="${age.age}" class="quantity">4</label>-->
+
                         </div>
                     </fieldset>
                 </article>
@@ -81,8 +80,6 @@
                             <input type="checkbox" th:id="${origin}" class="checkbox" th:field="*{origins}"
                                    th:text="${origin}"
                                    th:value="${origin}">
-                            <!--                    <label th:for="${origin}" th:text="${origin}">Spain</label>-->
-                            <!--                    <label th:for="${origin}" class="quantity">4</label>-->
                         </div>
                     </fieldset>
                 </article>
@@ -93,7 +90,6 @@
                 </form>
         </div>
         <div th:if="${typeID != null}">
-<!--                            <a th:href="@{/view-products/{categoryId}/{typeId}(categoryId=${categoryID}, typeId=${typeID})}" th:text="'have: ' + ${typeID}">Havent</a>-->
             <form  th:action="@{/view-products/{categoryId}/{typeId}(categoryId=${categoryID}, typeId=${typeID})}" method="GET"
                    th:object="${filterProductBindingModel}">
 
@@ -104,14 +100,7 @@
                             <input type="checkbox" th:id="${brand}" class="checkbox"  th:field="*{brands}"
                                    th:text="${brand}"
                                    th:value="${brand}">
-                            <!--                            th:[checked] ="${filterProductBindingModel.getBrands().contains(brand)} ? 'true' : 'false'"-->
-                            <!--                          >-->
-                            <!--                    <label th:for="${brand}" th:text="${brand}">ZARA</label>-->
-                            <!--                    <label th:for="${brand}" class="quantity">4</label>-->
-                            <!--                    <input th:each="age: ${ages}" id="productAges"-->
-                            <!--                           type="checkbox" name="ages" th:field="*{ages}"-->
-                            <!--                           th:text="${age.getAge()}"-->
-                            <!--                           th:value="${age.getAge()}">-->
+
                         </div>
                     </fieldset>
                 </article>
@@ -129,7 +118,6 @@
                         <div class="range-price">
                             <input type="number" id="minPrice" name="minPrice" th:value="10" readonly>
                             <input type="number" id="maxPrice" name="maxPrice" th:value="200" readonly >
-                            <!--                    <input type="hidden" th:value="${product.getId()}" id="productId" name="productId" >-->
                         </div>
                     </div>
                     <script th:src="@{/js/price-range.js}"></script>
@@ -142,8 +130,7 @@
                             <input type="checkbox" th:id="${age.age}" class="checkbox" th:field="*{ages}"
                                    th:text="${age.age}"
                                    th:value="${age.age}">
-                            <!--                    <label th:for="${age.age}" class="age-name" th:text="${age.age}">0 to 3 months</label>-->
-                            <!--                    <label th:for="${age.age}" class="quantity">4</label>-->
+
                         </div>
                     </fieldset>
                 </article>
@@ -155,8 +142,7 @@
                             <input type="checkbox" th:id="${origin}" class="checkbox" th:field="*{origins}"
                                    th:text="${origin}"
                                    th:value="${origin}">
-                            <!--                    <label th:for="${origin}" th:text="${origin}">Spain</label>-->
-                            <!--                    <label th:for="${origin}" class="quantity">4</label>-->
+
                         </div>
                     </fieldset>
                 </article>
@@ -171,8 +157,6 @@
     <section class="cards">
         <article class="card" th:each="product: ${products}">
             <a th:href="@{/curr-product/{productId}(productId = ${product.id})}">
-<!--            <form th:action="@{/curr-product/{productId}(productId = ${product.id})}" th:method="GET">-->
-                <!--            <input type="hidden" th:value="${product.getId()}" id="productId" name="productId" >-->
                 <div class="thumbnail">
                     <img class="thumbnail_img" th:src="'/images/' + ${product.getImageURL()}">
                     <input type="hidden" th:value="${product.getImageURL()}" id="imageURL" name="imageURL" >
@@ -192,20 +176,9 @@
                         </li>
                     </ul>
 
-                    <!--            <input th:each="age1: ${product.getAges()}"-->
-                    <!--                    th:field="*{age}"-->
-                    <!--                    type="radio" name="age"-->
-                    <!--                    th:text="${age1}"-->
-                    <!--                    th:value="${age1}">-->
-                    <!--        <div>-->
-                    <!--            <a class="minusButton" href="" th:pid="${product.count}"><b>-</b></a>-->
-                    <!--            <input type="text"  value="1" id="quantityInput" th:field="*{quantity}">-->
-                    <!--            <a class="plusButton" href=""  th:pid="${product.count}" ><b>+</b></a>-->
-                    <!--        </div>-->
-<!--                    <input type="submit" value="view">-->
                 </div>
             </a>
-<!--            </form>-->
+
         </article>
     </section>
 

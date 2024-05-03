@@ -210,7 +210,6 @@ public class ProductController {
     public ModelAndView delete (@PathVariable("id") Long id) {
         purchaseService.delete(id);
         return new ModelAndView("redirect:/cart");
-       // return new ModelAndView("redirect:/routes/details/" + routeId);
     }
 
     @GetMapping("/update-product/{id}")

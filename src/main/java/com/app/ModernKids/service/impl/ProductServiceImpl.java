@@ -88,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
 
             if(isUpload){
                 String originalFilename = pictureFile.getOriginalFilename();
-                product.setImageURL(fixName(originalFilename));
+                product.setImageURL(originalFilename);
             }
 
             productRepository.save(product);
@@ -240,7 +240,7 @@ public class ProductServiceImpl implements ProductService {
 
     private boolean uploadPicture(MultipartFile file, String filePath){
         try {
-            File newFile = new File(BASE_IMAGES_PATH + fixName(filePath));
+            File newFile = new File(BASE_IMAGES_PATH + (filePath));
             newFile.getParentFile().mkdirs();
             newFile.createNewFile();
 

@@ -3,21 +3,15 @@ package com.app.ModernKids.config;
 import com.app.ModernKids.model.enums.UserRoleEnum;
 import com.app.ModernKids.repo.UserRepository;
 import com.app.ModernKids.service.impl.ModernKidsUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.headers.HttpStrictTransportSecurityDsl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AbstractAuthenticationTargetUrlRequestHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +23,7 @@ public class SecurityConfig {
         return httpSecurity.authorizeHttpRequests(
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/", "/view-products/{categoryId}",
+                        .requestMatchers("/", "/view-products/{categoryId}", "/view-collection/{collectionName}",
                                 "/view-products/{categoryId}/{typeId}", "/curr-product/{productId}").permitAll()
                         .requestMatchers("/login", "/register", "/contact-form").permitAll()
                         .requestMatchers("/add-age", "/add-product", "/new-orders").hasRole(UserRoleEnum.ADMIN.name())

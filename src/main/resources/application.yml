@@ -28,3 +28,8 @@ spring:
 server:
     port: 8080
 
+stripe:
+    api:
+        publicKey: pk_test_51PCQyQK1okK6WvpRPBUAmf6gISNlFwG5Yfpv580f6Y5lLbEPR5qxDc4cDUqCZb8DXxWVPdryKLdF2wVZkq14z01w000IWS0tfV
+        secretKey: sk_test_51PCQyQK1okK6WvpRq92LEyKJ5mJpIjcLFgj0b0D0tUgNotFFGBbzoCsLpB5mWUMQfXYKNTt61qga0kTEPBHLyyUn00gGBNaYUc
+
