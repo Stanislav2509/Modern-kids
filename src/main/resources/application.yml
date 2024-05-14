@@ -21,7 +21,7 @@ spring:
             org:
                 hibernate:
                     type:
-                       descriptor: TRACE
+                        descriptor: TRACE
                     SQL: DEBUG
                 nodeValue: WARN
             blog: WARN

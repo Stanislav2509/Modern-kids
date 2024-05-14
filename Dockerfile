@@ -1,10 +1,17 @@
-FROM maven:3.8.5-openjdk-17 AS build
+FROM maven:3-openjdk-17
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY pom.xml .
+
+RUN mvn dependency:go-offline -B
+
 COPY . .
-RUN mvn clean package -DskipTests
 
-FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/Modern-kids-0.0.1-SNAPSHOT.jar app.jar
+RUN mvn package -DskipTests
+
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
 
+CMD ["java", "-jar", "target/Modern-kids-0.0.1-SNAPSHOT.jar"]
 
