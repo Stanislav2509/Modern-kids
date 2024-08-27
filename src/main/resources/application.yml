@@ -29,8 +29,8 @@ spring:
                 nodeValue: WARN
             blog: WARN
 server:
-    port: 8080
-
+#    port: 8080
+    port: ${PORT:8080}
 stripe:
     api:
         publicKey: pk_test_51PCQyQK1okK6WvpRPBUAmf6gISNlFwG5Yfpv580f6Y5lLbEPR5qxDc4cDUqCZb8DXxWVPdryKLdF2wVZkq14z01w000IWS0tfV
