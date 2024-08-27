@@ -1,5 +1,6 @@
 package com.app.ModernKids.model.dto;
 
+import com.app.ModernKids.model.entity.Age;
 import com.app.ModernKids.model.entity.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,4 +12,5 @@ public class PurchaseDTO {
     private Integer count;
     private Double totalAmount;
     private Product product;
+    private String age;
 }

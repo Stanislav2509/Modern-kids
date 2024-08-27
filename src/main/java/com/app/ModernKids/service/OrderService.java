@@ -15,4 +15,5 @@ public interface OrderService {
 
     List<OrderDTO> getOrderByStatus(String statusName);
 
+    void makeOrder();
 }

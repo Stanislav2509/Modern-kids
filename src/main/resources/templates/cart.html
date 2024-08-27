@@ -10,7 +10,7 @@
 <div th:replace="~{fragments/navigation}"></div>
 
 <main>
-    <form th:action="@{/buy}" th:method="POST">
+    <form th:action="@{/delivery-data}" th:method="get">
         <section class="cart_data">
             <table>
                 <thead>
@@ -33,7 +33,7 @@
                     <td><span th:text="${purchase.getTotalAmount()} + ' BGN'"></span>
                         <form action=""></form></td>
                     <td>
-                        <form th:action="@{/delete-purchase/{id}(id=${purchase.purchaseId})}"
+                        <form th:action="@{/delete-purchase/{id}/{age}(id=${purchase.product.id}, age=${purchase.age})}"
                               th:method="DELETE" >
                             <input class="btn btn-delete" type="submit"  value="X">
                         </form>

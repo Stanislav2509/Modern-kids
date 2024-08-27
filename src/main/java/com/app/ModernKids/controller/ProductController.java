@@ -166,17 +166,15 @@ public class ProductController {
         return modelAndView;
     }
 
-    @PostMapping("/purchase")
+    @GetMapping("/purchase")
     public ModelAndView viewCurrProduct(
-            @ModelAttribute("purchaseBindingModel") @Valid PurchaseBindingModel purchaseBindingModel,
-            BindingResult bindingResult, Principal principal){
+            @ModelAttribute("purchaseBindingModel") @Valid PurchaseBindingModel purchaseBindingModel){
+           // BindingResult bindingResult, Principal principal){
         ModelAndView modelAndView = new ModelAndView("curr-product");
-        String userEmail = principal.getName();
+        //String userEmail = principal.getName();
         Product product = productService.getById(purchaseBindingModel.getProductId());
-        Purchase purchase = purchaseService.getPurchase(product, purchaseBindingModel, userEmail);
-        if(purchase == null){
-            modelAndView.addObject("countError", true);
-        }
+        //Purchase purchase = purchaseService.getPurchase(product, purchaseBindingModel, userEmail);
+        purchaseService.addToCart(purchaseBindingModel);
 
         List<Age> ageList = productAgeService.getAgesOnProduct(product);
         Map<String, List<TypeProduct>> types = typeProductService.getTypes();
@@ -191,10 +189,12 @@ public class ProductController {
 
 
     @GetMapping("/cart")
-    public ModelAndView purchase(@ModelAttribute("purchaseBindingModel")  PurchaseBindingModel purchaseBindingModel, Principal principal){
+    public ModelAndView purchase(@ModelAttribute("purchaseBindingModel")  PurchaseBindingModel purchaseBindingModel){
+          //  , Principal principal){
         ModelAndView modelAndView =new ModelAndView("cart");
-        String userEmail = principal.getName();
-        List<PurchaseDTO> purchases = purchaseService.getPurchases(userEmail);
+        //String userEmail = principal.getName();
+       // List<PurchaseDTO> purchases = purchaseService.getPurchases(userEmail);
+        List<PurchaseDTO> purchases = purchaseService.getProductsInCart();
         double cartPrice = purchaseService.getCartPrice(purchases);
 
         Map<String, List<TypeProduct>> types = typeProductService.getTypes();
@@ -206,9 +206,10 @@ public class ProductController {
         return  modelAndView;
     }
 
-    @DeleteMapping("/delete-purchase/{id}")
-    public ModelAndView delete (@PathVariable("id") Long id) {
-        purchaseService.delete(id);
+    @DeleteMapping("/delete-purchase/{id}/{age}")
+    public ModelAndView delete (@PathVariable("id") Long id, @PathVariable("age") String age) {
+        //purchaseService.delete(id);
+        purchaseService.delete(id, age);
         return new ModelAndView("redirect:/cart");
     }
 

@@ -1,5 +1,6 @@
 package com.app.ModernKids.controller;
 
+import com.app.ModernKids.model.dto.SessionUserBindingModel;
 import com.app.ModernKids.model.dto.UserRegisterBindingModel;
 import com.app.ModernKids.model.entity.Category;
 import com.app.ModernKids.model.entity.TypeProduct;
@@ -77,4 +78,5 @@ public class UserController {
 
         return modelAndView;
     }
+
 }

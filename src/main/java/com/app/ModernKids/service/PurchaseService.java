@@ -16,6 +16,13 @@ public interface PurchaseService {
     double getCartPrice(List<PurchaseDTO> purchases);
 
     Purchase getPurchase(Product product, PurchaseBindingModel purchaseBindingModel, String userEmail);
+    void addToCart(PurchaseBindingModel purchaseBindingModel);
 
     Set<Purchase> getAllPurchasesByUserEmail(String userEmail);
+
+    List<PurchaseDTO> getProductsInCart();
+
+    void delete(Long id, String age);
+
+    void clearCart();
 }

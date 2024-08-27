@@ -15,7 +15,7 @@
 <div th:replace="~{fragments/navigation}"></div>
 <main>
     <section class="container" >
-        <form th:action="@{/purchase}" th:method="POST" th:object="${purchaseBindingModel}">
+        <form th:action="@{/purchase}" th:method="GET" th:object="${purchaseBindingModel}">
             <input type="hidden" th:value="${product.getId()}" id="productId" name="productId" >
 
 

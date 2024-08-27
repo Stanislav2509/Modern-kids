@@ -1,6 +1,7 @@
 package com.app.ModernKids.service.impl;
 
 import com.app.ModernKids.model.dto.OrderDTO;
+import com.app.ModernKids.model.dto.PurchaseDTO;
 import com.app.ModernKids.model.entity.*;
 import com.app.ModernKids.model.enums.StatusName;
 import com.app.ModernKids.repo.*;
@@ -9,10 +10,7 @@ import com.app.ModernKids.service.PurchaseService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -112,6 +110,66 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return orderDTOS;
+    }
+
+    @Override
+    public void makeOrder() {
+        List<PurchaseDTO> cart = purchaseService.getProductsInCart();
+//        Set<Purchase> purchaseSet = purchaseService.getAllPurchasesByUserEmail(userEmail);
+//        UserEntity user = userRepository.findByEmail(userEmail).get();
+        double totalAmount = 0;
+        List<ProductAge> productAgeList = new ArrayList<>();
+        for (PurchaseDTO purchase : cart) {
+            Optional<Product> productOpt = productRepository.findById(purchase.getProduct().getId());
+            Age age = ageRepository.findByAge(purchase.getAge());
+
+            if(productOpt.isPresent()){
+                Product product = productOpt.get();
+                ProductAge productAge = productAgeRepository.getByProductAndAge(product, age);
+
+//                if(productAge.getCount() < purchase.getCount()){
+//                    return false;
+//                }
+
+                totalAmount += purchase.getTotalAmount();
+                productAge.setCount(productAge.getCount() - purchase.getCount());
+                productAgeList.add(productAge);
+            }
+        }
+
+        Set<Purchase> purchases = new LinkedHashSet<>();
+
+        for (PurchaseDTO curr: cart) {
+            Purchase purchase = new Purchase();
+            purchase.setAge(curr.getAge());
+            purchase.setProduct(curr.getProduct());
+            purchase.setTotalAmount(curr.getTotalAmount());
+            purchase.setCount(curr.getCount());
+            purchases.add(purchase);
+        }
+
+        Order order = new Order();
+        order.setPurchases(purchases);
+        order.setPrice(totalAmount);
+        order.setDate(LocalDate.now());
+        Status statusNew = statusRepository.getByName(StatusName.NEW.getDisplayValue());
+        order.setStatus(statusNew);
+       // order.setUser(user);
+        orderRepository.save(order);
+
+        purchaseService.clearCart();
+
+        for (Purchase purchase: purchases) {
+//            Status statusBought = statusRepository.getByName(StatusName.BOUGHT.getDisplayValue());
+//            purchase.setStatus(statusBought);
+            purchase.setOrder(order);
+            purchaseRepository.save(purchase);
+        }
+
+        productAgeRepository.saveAll(productAgeList);
+
+
+
     }
 
 }

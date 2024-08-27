@@ -23,9 +23,9 @@ public class SecurityConfig {
         return httpSecurity.authorizeHttpRequests(
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/", "/view-products/{categoryId}", "/view-collection/{collectionName}",
-                                "/view-products/{categoryId}/{typeId}", "/curr-product/{productId}").permitAll()
-                        .requestMatchers("/login", "/register", "/contact-form").permitAll()
+                        .requestMatchers("/", "/view-products/{categoryId}", "/view-collection/{collectionName}", "/delivery-data" ,
+                                "/view-products/{categoryId}/{typeId}", "/curr-product/{productId}", "/cart", "/buy").permitAll()
+                        .requestMatchers("/login", "/register", "/contact-form", "/purchase", "/delete-purchase/{id}/{age}").permitAll()
                         .requestMatchers("/add-age", "/add-product", "/new-orders").hasRole(UserRoleEnum.ADMIN.name())
                         .requestMatchers("/courier-order/{id}", "/completed-order/{id}").hasRole(UserRoleEnum.ADMIN.name())
                         .requestMatchers("/failed-order/{id}", "/queries").hasRole(UserRoleEnum.ADMIN.name())

@@ -1,9 +1,12 @@
 package com.app.ModernKids.service.impl;
 
+import com.app.ModernKids.model.dto.SessionUserBindingModel;
 import com.app.ModernKids.model.dto.UserRegisterBindingModel;
+import com.app.ModernKids.model.entity.SessionUser;
 import com.app.ModernKids.model.entity.UserEntity;
 import com.app.ModernKids.model.entity.UserRole;
 import com.app.ModernKids.model.enums.UserRoleEnum;
+import com.app.ModernKids.repo.SessionUserRepository;
 import com.app.ModernKids.repo.UserRepository;
 import com.app.ModernKids.repo.UserRoleRepository;
 import com.app.ModernKids.service.UserService;
@@ -18,11 +21,13 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserRoleRepository userRoleRepository;
+    private final SessionUserRepository sessionUserRepository;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository, SessionUserRepository sessionUserRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userRoleRepository = userRoleRepository;
+        this.sessionUserRepository = sessionUserRepository;
     }
 
     @Override
@@ -50,5 +55,17 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         return true;
+    }
+
+    @Override
+    public void register(SessionUserBindingModel sessionUserBindingModel) {
+        SessionUser sessionUser = new SessionUser();
+        sessionUser.setFirstName(sessionUserBindingModel.getFirstName());
+        sessionUser.setLastName(sessionUserBindingModel.getLastName());
+        sessionUser.setEmail(sessionUserBindingModel.getEmail());
+        sessionUser.setPhoneNumber(sessionUserBindingModel.getPhoneNumber());
+        sessionUser.setAddress(sessionUserBindingModel.getAddress());
+
+        sessionUserRepository.save(sessionUser);
     }
 }
