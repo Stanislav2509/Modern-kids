@@ -13,9 +13,12 @@ spring:
                 enabled: 'true'
     datasource:
         driverClassName: com.mysql.cj.jdbc.Driver
-        password: 1234
-        username: root
-        url: jdbc:mysql://localhost:3306/modern_kids?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+#        username: root
+#        password: 1234
+        username: qnb9ld8aqehd0yw1
+        password: wsfuug8fkhz91bga
+#        url: jdbc:mysql://localhost:3306/modern_kids?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+        url: jdbc:mysql://zj2x67aktl2o6q2n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/iv5jhkytlw947w22?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
     logging:
         level:
             org:
